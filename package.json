@@ -1,0 +1,35 @@
+{
+  "name": "telnyx-cypress-cucumber",
+  "version": "1.0.0",
+  "description": "UI tests for telnyx.com with Cypress + Cucumber",
+  "scripts": {
+    "cy:open": "cypress open",
+    "test": "cypress run --browser chrome",
+    "test:smoke": "cypress run --browser chrome --expose tags=@smoke",
+    "test:ci": "cypress run --browser chrome --config-file cypress.ci.config.ts",
+    "typecheck": "tsc -p ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^28.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
+    "cypress": "^16.2.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.9.3"
+  },
+  "cypress-cucumber-preprocessor": {
+    "filterSpecs": true,
+    "omitFiltered": true,
+    "messages": {
+      "enabled": true,
+      "output": "reports/cucumber-messages.ndjson"
+    },
+    "html": {
+      "enabled": true,
+      "output": "reports/index.html"
+    }
+  }
+}

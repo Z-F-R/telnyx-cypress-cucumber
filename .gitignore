@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Cypress generated files
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# Cucumber reports
+reports/
+
+# Claude Code
+.claude/
