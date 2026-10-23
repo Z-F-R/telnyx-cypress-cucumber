@@ -7,6 +7,7 @@ Given("I open the pricing page", () => {
 });
 
 When("I choose to view all pricing", () => {
+    Header.getViewAllPricingLink().should("have.attr", "href", "/pricing");
     Header.clickViewAllPricing();
 });
 

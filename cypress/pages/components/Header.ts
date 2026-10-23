@@ -33,7 +33,7 @@ class Header {
     }
 
     getViewAllPricingLink() {
-        return cy.get('#main-menu a[href="/pricing"]').filter(":visible").first();
+        return this.getLink("View all pricing");
     }
 
     getMobileMenuButton() {
