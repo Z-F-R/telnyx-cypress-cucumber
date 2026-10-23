@@ -5,7 +5,7 @@ Feature: Pricing
   Scenario: Pricing page opens from the header
     Given I open the Telnyx homepage
     When I open the "Pricing" header dropdown
-    And I click the link to view all pricing
+    And I choose to view all pricing
     Then the URL should contain "/pricing"
     And the pricing page heading should be displayed
 

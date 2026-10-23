@@ -1,24 +1,22 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import HomePage from "../../pages/HomePage";
+import Header from "../../pages/components/Header";
 
-Given("I open the Telnyx homepage on a {int}x{int} screen", (width: number, height: number) => {
-    cy.viewport(width, height);
+Given("I open the Telnyx homepage on a mobile device", () => {
+    // iPhone X, 375 × 812
+    cy.viewport("iphone-x");
     HomePage.visit();
 });
 
-Then("the mobile menu button should be visible", () => {
-    HomePage.getMobileMenuButton().should("be.visible");
+Given("the mobile menu is closed", () => {
+    Header.getMobileMenuButton().should("be.visible").and("have.attr", "aria-expanded", "false");
 });
 
-Then("the mobile menu should be closed", () => {
-    HomePage.getMobileMenuButton().should("have.attr", "aria-expanded", "false");
-});
-
-When("I tap the mobile menu button", () => {
-    HomePage.openMobileMenu();
+When("I open the mobile menu", () => {
+    Header.openMobileMenu();
 });
 
 Then("the mobile menu should be open", () => {
-    HomePage.getMobileMenuButton().should("have.attr", "aria-expanded", "true");
-    cy.get("#main-menu-content").should("be.visible");
+    Header.getMobileMenuButton().should("have.attr", "aria-expanded", "true");
+    Header.getMobileMenuContent().should("be.visible");
 });

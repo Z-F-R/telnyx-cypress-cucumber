@@ -1,17 +1,18 @@
-import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import HomePage from "../../pages/HomePage";
+import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import Header from "../../pages/components/Header";
 import PortalLoginPage from "../../pages/PortalLoginPage";
 
-When("I click the Sign up link in the header", () => {
-    HomePage.clickSignUp();
+When("I start the sign up", () => {
+    Header.getSignUpLink().should("have.attr", "href", "/sign-up");
+    Header.clickSignUp();
 });
 
-Then("the Log in link should point to {string}", (url) => {
-    HomePage.getLogInLink().should("be.visible").and("have.attr", "href", url);
+Given("the Log in link points to {string}", (url: string) => {
+    Header.getLogInLink().should("be.visible").and("have.attr", "href", url);
 });
 
-When("I click the Log in link in the header", () => {
-    HomePage.clickLogIn();
+When("I go to log in", () => {
+    Header.clickLogIn();
 });
 
 Then("the Telnyx portal sign in page should be opened", () => {
@@ -20,7 +21,7 @@ Then("the Telnyx portal sign in page should be opened", () => {
         { args: { selector: PortalLoginPage.titleSelector } },
         ({ selector }: { selector: string }) => {
             // The portal throws its own error with an empty message while loading.
-            // Handlers from support/e2e.js do not apply to another origin.
+            // Handlers from support/e2e.ts do not apply to another origin.
             Cypress.on("uncaught:exception", (err: Error) => {
                 if (!err.message || err.message === "null") {
                     return false;

@@ -14,8 +14,12 @@ When("I accept the terms and conditions", () => {
     SignUpPage.acceptTerms();
 });
 
-When("I click Create account", () => {
+When("I submit the sign up form", () => {
     SignUpPage.clickCreateAccount();
+});
+
+Then("the sign up page heading should contain {string}", (text: string) => {
+    SignUpPage.getHeading().should("be.visible").and("contain.text", text);
 });
 
 Then("the email error {string} should be displayed", (message: string) => {

@@ -1,16 +1,13 @@
-class PricingPage {
-    // Locators
-    getHeading() {
-        return cy.get("h1");
+import BasePage from "./BasePage";
+
+class PricingPage extends BasePage {
+    constructor() {
+        super("/pricing");
     }
 
+    // Locators
     getSection(name: string) {
         return cy.contains("h3", name);
-    }
-
-    // Actions
-    visit() {
-        cy.visit("/pricing");
     }
 }
 

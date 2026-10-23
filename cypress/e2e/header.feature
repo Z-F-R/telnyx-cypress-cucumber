@@ -16,8 +16,7 @@ Feature: Header navigation
 
   @TC-013
   Scenario: Opening another header dropdown closes the previous one
-    When I open the "Products" header dropdown
-    Then the "Products" header dropdown should be expanded
+    Given the "Products" header dropdown is open
     When I open the "Solutions" header dropdown
     Then the "Solutions" header dropdown should be expanded
     And the "Products" header dropdown should be collapsed

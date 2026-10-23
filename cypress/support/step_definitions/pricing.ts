@@ -1,13 +1,13 @@
 import { Given, When, Then, DataTable } from "@badeball/cypress-cucumber-preprocessor";
-import HomePage from "../../pages/HomePage";
+import Header from "../../pages/components/Header";
 import PricingPage from "../../pages/PricingPage";
 
 Given("I open the pricing page", () => {
     PricingPage.visit();
 });
 
-When("I click the link to view all pricing", () => {
-    HomePage.clickViewAllPricing();
+When("I choose to view all pricing", () => {
+    Header.clickViewAllPricing();
 });
 
 Then("the pricing page heading should be displayed", () => {

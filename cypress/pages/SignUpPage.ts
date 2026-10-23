@@ -1,9 +1,11 @@
-class SignUpPage {
-    // Locators
-    getHeading() {
-        return cy.get("h1");
+import BasePage from "./BasePage";
+
+class SignUpPage extends BasePage {
+    constructor() {
+        super("/sign-up");
     }
 
+    // Locators
     getEmailInput() {
         return cy.get("#unified-sign-up-email");
     }
@@ -25,16 +27,13 @@ class SignUpPage {
     }
 
     // Actions
-    visit() {
-        cy.visit("/sign-up");
-    }
-
     typeEmail(email: string) {
         this.getEmailInput().clear().type(email);
     }
 
     acceptTerms() {
         this.getTermsCheckbox().check({ force: true });
+        this.getTermsCheckbox().should("be.checked");
     }
 
     clickCreateAccount() {
