@@ -10,11 +10,6 @@ export default defineConfig({
         viewportWidth: 1440,
         viewportHeight: 900,
         defaultCommandTimeout: 10000,
-        // The live site and the portal sometimes load slowly
-        retries: {
-            runMode: 2,
-            openMode: 0,
-        },
         async setupNodeEvents(on, config) {
             await addCucumberPreprocessorPlugin(on, config);
             on(
