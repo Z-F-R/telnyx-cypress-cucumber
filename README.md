@@ -2,18 +2,18 @@
 
 UI automation project for testing the [Telnyx](https://telnyx.com/) website using Cypress, TypeScript, Cucumber (Gherkin), GitHub Actions and GitHub Pages.
 
-* Test plan with 15 test cases: [docs/telnyx-test-plan.xlsx](docs/telnyx-test-plan.xlsx)
-* Latest test report: https://z-f-r.github.io/telnyx-cypress-cucumber/
+- Test plan with 15 test cases: [docs/telnyx-test-plan.xlsx](docs/telnyx-test-plan.xlsx)
+- Latest test report: https://z-f-r.github.io/telnyx-cypress-cucumber/
 
 ## Tech Stack
 
-* **Cypress** — UI test automation framework
-* **Cucumber (Gherkin)** — BDD scenarios via `@badeball/cypress-cucumber-preprocessor`
-* **esbuild** — bundler for feature files and step definitions
-* **TypeScript** — programming language
-* **Cucumber HTML Report** — test reporting
-* **GitHub Actions** — CI pipeline
-* **GitHub Pages** — report hosting
+- **Cypress** — UI test automation framework
+- **Cucumber (Gherkin)** — BDD scenarios via `@badeball/cypress-cucumber-preprocessor`
+- **esbuild** — bundler for feature files and step definitions
+- **TypeScript** — programming language
+- **Cucumber HTML Report** — test reporting
+- **GitHub Actions** — CI pipeline
+- **GitHub Pages** — report hosting
 
 ## Project Structure
 
@@ -62,9 +62,9 @@ telnyx-cypress-cucumber/
 
 ### Prerequisites
 
-* Node.js 24+
-* npm
-* Google Chrome
+- Node.js 24+
+- npm
+- Google Chrome
 
 Install project dependencies:
 
@@ -114,16 +114,16 @@ npx cypress run --browser chrome --expose tags=@TC-005
 
 Every scenario is tagged, so any subset of the suite can be run with `--expose tags=...`:
 
-* `@TC-001` ... `@TC-015` — test case ID from the test plan
-* `@smoke` — critical checks (6 scenarios)
-* `@regression` — the full suite
+- `@TC-001` ... `@TC-015` — test case ID from the test plan
+- `@smoke` — critical checks (6 scenarios)
+- `@regression` — the full suite
 
 Cypress 16 passes plugin settings through `expose`, so tags are set with `--expose tags=...`, not `--env`.
 
 ## Configurations
 
-* `cypress.config.ts` — base config for local runs: base URL, viewport, timeouts, retries and the Cucumber preprocessor.
-* `cypress.ci.config.ts` — config for GitHub Actions. It extends the base config with longer timeouts for the slower shared runner and turns videos off.
+- `cypress.config.ts` — base config for local runs: base URL, viewport, timeouts, retries and the Cucumber preprocessor.
+- `cypress.ci.config.ts` — config for GitHub Actions. It extends the base config with longer timeouts for the slower shared runner and turns videos off.
 
 The config is selected with `--config-file`:
 
@@ -164,18 +164,18 @@ The workflow is located at:
 
 The test suite contains **15 UI test cases** covering:
 
-* Home page loading and page title
-* Logo navigation
-* Header navigation menu
-* Header dropdown behavior
-* Sign-up navigation
-* Login navigation to the Telnyx portal
-* Pricing page and pricing plans
-* Footer sections
-* Social media links
-* Responsive/mobile navigation
-* Sign-up form required field validation
-* Email validation
+- Home page loading and page title
+- Logo navigation
+- Header navigation menu
+- Header dropdown behavior
+- Sign-up navigation
+- Login navigation to the Telnyx portal
+- Pricing page and pricing plans
+- Footer sections
+- Social media links
+- Responsive/mobile navigation
+- Sign-up form required field validation
+- Email validation
 
 ## Page Object Model
 
@@ -185,6 +185,6 @@ Page-specific locators and actions are encapsulated inside dedicated page classe
 
 ## Site Specifics
 
-* **Cookie banner** — before each test the OneTrust consent cookies are set (strictly necessary cookies only), so the banner is not rendered and does not overlap page elements.
-* **Known site errors** — errors thrown by telnyx.com itself (`document.modelContext`, third-party `Script error.`) are ignored, so they do not fail the tests.
-* **Portal** — the Log in link leads to `portal.telnyx.com`, which is checked inside `cy.origin`.
+- **Cookie banner** — before each test the OneTrust consent cookies are set (strictly necessary cookies only), so the banner is not rendered and does not overlap page elements.
+- **Known site errors** — errors thrown by telnyx.com itself (`document.modelContext`, third-party `Script error.`) are ignored, so they do not fail the tests.
+- **Portal** — the Log in link leads to `portal.telnyx.com`, which is checked inside `cy.origin`.

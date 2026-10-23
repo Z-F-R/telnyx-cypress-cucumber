@@ -1,5 +1,4 @@
 class SignUpPage {
-
     // Locators
     getHeading() {
         return cy.get("h1");

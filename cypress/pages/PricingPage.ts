@@ -1,5 +1,4 @@
 class PricingPage {
-
     // Locators
     getHeading() {
         return cy.get("h1");

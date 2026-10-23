@@ -7,18 +7,27 @@
     "test": "cypress run --browser chrome",
     "test:smoke": "cypress run --browser chrome --expose tags=@smoke",
     "test:ci": "cypress run --browser chrome --config-file cypress.ci.config.ts",
-    "typecheck": "tsc -p ."
+    "typecheck": "tsc -p .",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "keywords": [],
-  "author": "",
+  "author": "Z-F-R",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^28.0.1",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
+    "@eslint/js": "^10.0.1",
     "cypress": "^16.2.0",
     "esbuild": "^0.28.2",
-    "typescript": "^5.9.3"
+    "eslint": "^10.13.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-cypress": "^7.0.2",
+    "prettier": "^3.9.10",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.0"
   },
   "cypress-cucumber-preprocessor": {
     "filterSpecs": true,

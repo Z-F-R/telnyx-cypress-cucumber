@@ -1,5 +1,4 @@
 class HomePage {
-
     // Locators
     getLogo() {
         return cy.get('#site-header a[href="/"]').filter(":visible").first();
