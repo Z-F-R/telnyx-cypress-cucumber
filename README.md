@@ -32,6 +32,10 @@ telnyx-cypress-cucumber/
 │   │   ├── pricing.feature
 │   │   └── signup.feature
 │   ├── pages/
+│   │   ├── components/
+│   │   │   ├── Footer.ts
+│   │   │   └── Header.ts
+│   │   ├── BasePage.ts
 │   │   ├── HomePage.ts
 │   │   ├── PortalLoginPage.ts
 │   │   ├── PricingPage.ts
@@ -43,15 +47,17 @@ telnyx-cypress-cucumber/
 │           ├── common.ts
 │           ├── footer.ts
 │           ├── header.ts
-│           ├── homepage.ts
 │           ├── mobile.ts
 │           ├── pricing.ts
 │           └── signup.ts
 ├── docs/
 │   └── telnyx-test-plan.xlsx
 ├── .gitignore
+├── .prettierignore
+├── .prettierrc.json
 ├── cypress.config.ts
 ├── cypress.ci.config.ts
+├── eslint.config.mjs
 ├── package.json
 ├── package-lock.json
 ├── README.md
@@ -92,11 +98,15 @@ npm run test:smoke
 npm run test:ci
 ```
 
-### Check types
+### Check types, lint and formatting
 
 ```bash
 npm run typecheck
+npm run lint
+npm run format:check
 ```
+
+`npm run format` fixes the formatting with Prettier.
 
 ### Open Cypress UI
 
@@ -122,8 +132,8 @@ Cypress 16 passes plugin settings through `expose`, so tags are set with `--expo
 
 ## Configurations
 
-- `cypress.config.ts` — base config for local runs: base URL, viewport, timeouts, retries and the Cucumber preprocessor.
-- `cypress.ci.config.ts` — config for GitHub Actions. It extends the base config with longer timeouts for the slower shared runner and turns videos off.
+- `cypress.config.ts` — base config for local runs: base URL, viewport, timeouts and the Cucumber preprocessor. There are no retries, so a flaky test shows up locally.
+- `cypress.ci.config.ts` — config for GitHub Actions. It extends the base config with longer timeouts for the slower shared runner and retries failed tests twice.
 
 The config is selected with `--config-file`:
 
@@ -148,11 +158,11 @@ The project uses GitHub Actions for automated test execution on every push and p
 The workflow:
 
 1. Checks out the repository.
-2. Installs dependencies.
-3. Checks TypeScript types.
+2. Installs dependencies (npm packages and the Cypress binary are cached).
+3. Checks TypeScript types, ESLint rules and Prettier formatting.
 4. Runs the test suite in Chrome with `cypress.ci.config.ts`.
-5. Uploads screenshots of failed tests as an artifact.
-6. Publishes the Cucumber HTML report to GitHub Pages (also when tests fail).
+5. Uploads screenshots (including tests that passed on retry) and the Cucumber report as artifacts, so the report is also available on pull requests.
+6. On `main`, publishes the Cucumber HTML report to GitHub Pages (also when tests fail).
 
 The workflow is located at:
 
@@ -181,7 +191,7 @@ The test suite contains **15 UI test cases** covering:
 
 The project follows the **Page Object Model (POM)** pattern.
 
-Page-specific locators and actions are encapsulated inside dedicated page classes. Step definitions use these classes, so feature files describe business behavior and locators live in one place.
+Page-specific locators and actions are encapsulated inside dedicated page classes that extend `BasePage`. The header and the footer appear on every page, so they are separate components in `pages/components/`. Step definitions use these classes, so feature files describe business behavior and locators live in one place.
 
 ## Site Specifics
 
