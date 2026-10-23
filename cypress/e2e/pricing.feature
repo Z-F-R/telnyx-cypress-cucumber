@@ -7,7 +7,7 @@ Feature: Pricing
     When I open the "Pricing" header dropdown
     And I choose to view all pricing
     Then the URL should contain "/pricing"
-    And the pricing page heading should be displayed
+    And the pricing page heading should contain "Pay for what you use"
 
   @TC-007
   Scenario: Pricing plan sections are displayed

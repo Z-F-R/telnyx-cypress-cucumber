@@ -11,8 +11,8 @@ When("I choose to view all pricing", () => {
     Header.clickViewAllPricing();
 });
 
-Then("the pricing page heading should be displayed", () => {
-    PricingPage.getHeading().should("be.visible").and("not.be.empty");
+Then("the pricing page heading should contain {string}", (text: string) => {
+    PricingPage.getHeading().should("be.visible").and("contain.text", text);
 });
 
 Then("the following pricing sections should be displayed:", (dataTable: DataTable) => {
