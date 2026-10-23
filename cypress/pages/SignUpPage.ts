@@ -32,7 +32,9 @@ class SignUpPage extends BasePage {
     }
 
     acceptTerms() {
-        this.getTermsCheckbox().check({ force: true });
+        // The checkbox is a visible native input, so it is checked directly.
+        // A click on its label would land on the Terms link in the middle of it.
+        this.getTermsCheckbox().check();
         this.getTermsCheckbox().should("be.checked");
     }
 
